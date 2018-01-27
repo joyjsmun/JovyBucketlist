@@ -20,9 +20,10 @@ var express = require("express"),
         placeRoutes = require("./routes/places"),
         indexRoutes = require("./routes/index")
    
-   
 
-mongoose.connect("mongodb://localhost/jovy_app_13Deployed");
+
+mongoose.connect(process.env.DATABASEURL);
+
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + "/public"));

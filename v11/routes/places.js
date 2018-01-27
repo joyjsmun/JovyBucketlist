@@ -74,6 +74,7 @@ router.get("/:id",function(req,res){
 
 router.get("/:id/edit",middleware.checkPlacesOwnership,function(req,res){
        Places.findById(req.params.id,function(err,foundPlace){
+      
                  res.render("places/edit",{place:foundPlace});
       });
       

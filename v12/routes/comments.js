@@ -23,6 +23,7 @@ var middleware = require("../middleware");
     //lookup campgound using ID
     Places.findById(req.params.id,function(err, place) {
        if(err){
+          req.flash("error","Something went wrong");
           console.log(err);
           res.redirect("/places");
        } else{
@@ -38,6 +39,7 @@ var middleware = require("../middleware");
                  comment.save();
                 place.comments.push(comment._id);
                 place.save();
+                req.flash("sucess","Successfully added comment");
                 res.redirect('/places/'+place._id);
                 }
              });
@@ -87,6 +89,7 @@ var middleware = require("../middleware");
    if(err){
     res.redirect("back");
    }else{
+      req.flash("sucess","Comment deleted");
     res.redirect("/places/" + req.params.id);
    }
   });

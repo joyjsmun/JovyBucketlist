@@ -25,13 +25,14 @@ router.post("/",middleware.isLoggedIn, function(req,res){
   
    //get data form and add to places array
    var name = req.body.name;
+   var when = req.body.when;
    var image = req.body.image;
    var desc = req.body.description;
    var author ={
       id : req.user._id,
       username: req.user.username
    }
-   var newPlaces = {name:name,image:image,description:desc,author:author}
+   var newPlaces = {name:name,when:when,image:image,description:desc,author:author}
    
 
    
@@ -74,6 +75,7 @@ router.get("/:id",function(req,res){
 
 router.get("/:id/edit",middleware.checkPlacesOwnership,function(req,res){
        Places.findById(req.params.id,function(err,foundPlace){
+      
                  res.render("places/edit",{place:foundPlace});
       });
       
